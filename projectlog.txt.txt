@@ -1,0 +1,27 @@
+2013 Aug.
+- Project start
+
+2013 Dec.
+- UV texture mapping created.
+- Camera created.
+- Obj-loading created.
+The plain text model files are solely intended for the ease of debugging, later a binary version for these files will be designed for Release.
+
+2014 Jan.
+- Defined an easier plain text format than .obj for reading vertex data, resulting in easier code and easier export from Blender to OpenGL. A Python script for Blender was used to export this into h-files (C), this was modified to writing plain text (defined as mdl for model). Obj-loading not used anymore. NB, this working script is only working for an older Blender version.
+- Trying cube map texturing, firstly for skyboxes. Skybox (test) added.
+- Some bugs discovered with camera - what is the problem?
+Probably floating point propagation error when rotating the camera for a long time. (The rotation seem to accelerate slightly and the skybox being skewed).
+When using precalculated vector values for rotation, the bug seems to be eliminated visually (and by values) for exactly this problem, however eventual floating point propagation issues may affect other vector as well (as evident).
+Need to investigate further (also for other possibilities than fp)
+
+-up vector creates tunnel vision in the camera. this was due to error in the vector normalizing.
+
+2014 Mar.
+Light is added to scene, experimenting with ambient, diffuse and specular lights. Map-file defined for transformation matrices (i.e. translation (model positioning)). For the future: consider to position light sources in scene by using map-file (omni, directional and spotlight sources). Map-file should possibly dictate the scene layout, also skyboxes, and anything that defines a scene.
+
+2014 Apr.
+Map file format extended for (static) rotation and scaling of models
+- negative scaling (mirroring) does not work, but positive scaling is ok
+- add objects to world for debug purposes, virtual coordinate system object and/or grid object?
+- perhaps create simple vertical collision detection, maybe surface normals can be used for this
